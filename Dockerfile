@@ -1,3 +1,3 @@
 FROM renskiy/cron
 
-RUN apt update && apt install mysql-client
+RUN apt update && apt install -y mysql-client
