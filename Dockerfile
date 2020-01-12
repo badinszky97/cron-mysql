@@ -1,9 +1,7 @@
-FROM renskiy/cron
+FROM ubuntu
 
-COPY entrypoint.sh /root
+RUN apt update && apt install -y git ssh cron
+RUN apt install -y zip mysql-client && apt autoclean && apt autoremove
+RUN /etc/init.d/cron start
 
-RUN chmod +x /root/entrypoint.sh && apt update && apt install -y mysql-client && apt autoremove && apt autoclean
-
-ENTRYPOINT ["/root/entrypoint.sh"]
-
-CMD ["start-cron"]
+CMD ["cron", "-f"]
